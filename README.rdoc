@@ -1,0 +1,2 @@
+== iTunes Folder Cleaner
+This tiny script removes all folders that do not contain an audio file. This is due to iTunes leaving a lot of folders like that when you let it organize your collection.

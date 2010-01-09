@@ -1,2 +1,5 @@
 == iTunes Folder Cleaner
 This tiny script removes all folders that do not contain an audio file. This is due to iTunes leaving a lot of folders like that when you let it organize your collection.
+
+== Isn't this overkill?
+Probably. Someone who's good at bash scripting would be able to yank this behavior out within minutes. But it was a good small project for me to play with Cucumber and RSpec.

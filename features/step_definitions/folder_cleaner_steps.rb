@@ -23,11 +23,19 @@ end
 
 Then /^it should still be there$/ do
   (File.directory? @path).should == true
+  
+  #clean up afterwards
+  delete_folder(@path)
 end
 
 def create_folder(folder_name)
   @path = File.join(File.expand_path(File.dirname(__FILE__)),  folder_name)
-  FileUtils.remove_dir(@path) if File.directory? @path
+  delete_folder(@path)
   FileUtils.mkdir(@path)
   @path
+end
+
+def delete_folder(path)
+  Dir.chdir()
+  FileUtils.remove_dir(path) if File.directory? path  
 end

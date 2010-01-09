@@ -1,6 +1,6 @@
 class DirHandler
   def delete(path)
-    Dir.chdir("..")
+    Dir.chdir()
     FileUtils.remove_dir(path)
   end
 

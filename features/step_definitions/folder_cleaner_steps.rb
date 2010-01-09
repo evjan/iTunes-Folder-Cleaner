@@ -4,16 +4,21 @@ require 'dir_handler'
 
 Given /^an empty folder$/ do
   @path = create_folder("testfolder")
-  @dir_handler = DirHandler.new
 end
 
-Given /^a folder with an mp3 file in it$/ do
+Given /^a folder with a "([^\"]*)" file in it$/ do |file_ending|
   @path = create_folder("testfolder")
-  FileUtils.touch(File.join(@path, "test.mp3"))
-  @dir_handler = DirHandler.new
+  FileUtils.touch(File.join(@path, "test" + file_ending))
+end
+
+Given /^a folder with a folder with a "([^\"]*)" file in it$/ do |file_ending|
+  @path = create_folder("testfolder")
+  create_folder(File.join("testfolder", "testfolderlevel2"))
+  FileUtils.touch(File.join(@path, "testfolderlevel2", "test" + file_ending))
 end
 
 When /^I clean it$/ do
+  @dir_handler = DirHandler.new
   FolderCleaner.Clean(@path, @dir_handler)
 end
 
@@ -29,10 +34,10 @@ Then /^it should still be there$/ do
 end
 
 def create_folder(folder_name)
-  @path = File.join(File.expand_path(File.dirname(__FILE__)),  folder_name)
-  delete_folder(@path)
-  FileUtils.mkdir(@path)
-  @path
+  path = File.join(File.expand_path(File.dirname(__FILE__)),  folder_name)
+  delete_folder(path)
+  FileUtils.mkdir(path)
+  path
 end
 
 def delete_folder(path)

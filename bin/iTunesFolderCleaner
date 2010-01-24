@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+$LOAD_PATH.push File.join(File.dirname(__FILE__), "..", "lib")
+require "folder_cleaner"
+require "dir_handler"
+
+dir_handler = DirHandler.new
+FolderCleaner.Clean(ARGV[0], dir_handler)

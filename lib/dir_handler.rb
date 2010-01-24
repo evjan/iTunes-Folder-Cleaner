@@ -1,3 +1,5 @@
+require 'fileutils'
+
 class DirHandler
   def delete(path)
     Dir.chdir()
